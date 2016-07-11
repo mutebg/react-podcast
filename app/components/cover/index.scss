@@ -1,0 +1,13 @@
+.cover {
+  background: #fff;
+  height: 270px;
+  text-align: center;
+
+  &__img {
+    width:  180px;
+    height: 180px;
+    margin: 20px 0 20px 0;
+    display: inline-block;
+
+  }
+}

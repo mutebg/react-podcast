@@ -1,0 +1,48 @@
+.fake-header {
+  z-index: 0;
+  width: 100%;
+  height: 270px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  pointer-events: none;
+
+  &__bubble {
+    transform: scale(0);
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+    border-radius: 50%;
+    transition: 0.3s transform linear;
+    transform-origin: 50% 80%;
+  }
+
+  &--show {
+    .fake-header__bubble {
+      transform: scale(2);
+    }
+  }
+}
+
+
+.fake-container {
+  position: fixed;
+  top: 270px;
+  height: calc( 100vh - 270px );
+  width: 100%;
+  pointer-events: none;
+  left: 0;
+  background: #efefef;
+  opacity: 1;
+  transform: translate3d(0, 100%, 0);
+  transition-delay: 0.1s;
+  transition: 0.3s all linear;
+
+
+
+  &--show {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}

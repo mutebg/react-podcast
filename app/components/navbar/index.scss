@@ -1,0 +1,23 @@
+$size: 50px;
+
+.navbar {
+  height: $size;
+  background: #009688;
+  display: flex;
+
+  &__icon {
+    width: $size;
+    height: $size;
+    flex: 1;
+    max-width: $size;
+    min-width: $size;
+    font-size: 38px;
+    line-height: $size;
+    text-align: center;
+    color: #fff;
+  }
+
+  &__body {
+    flex: auto;
+  }
+}

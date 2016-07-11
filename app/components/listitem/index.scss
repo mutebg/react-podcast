@@ -1,0 +1,76 @@
+.truncate {
+  text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+  width: 100%;
+}
+
+.list-item {
+  margin: 10px 10px 0 10px;
+  padding: 5px;
+  border-radius: 3px;
+  display: flex;
+  transition: 0.2s opacity;
+  position: relative;
+  z-index: 1;
+
+
+  &:after {
+    content: "";
+    display: block;
+    background: #fff;
+    box-shadow: 0 1px 4px #f7f7f7;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+  //background: #fff;
+
+  &__icon {
+    float: left;
+    width: 80px;
+    height: 80px;
+    border-radius: 5px;
+    flex: 1;
+    max-width: 80px;
+    min-width: 80px;
+    transition: 0.4s all linear;
+  }
+
+  &__body {
+    flex: 1;
+    padding-left: 10px;
+  }
+
+  &__title {
+    font-size: 1.2rem;
+    @extend .truncate;
+  }
+
+  &__rating {
+
+  }
+
+  &__author {
+    @extend .truncate;
+  }
+
+  &--hide-all {
+    opacity: 0;
+    &:after {
+      opacity: 0;
+    }
+  }
+
+  &--hide-body {
+    //background: none;
+    &:after,
+    *:not(.list-item__icon) {
+      opacity: 0;
+    }
+  }
+
+}
