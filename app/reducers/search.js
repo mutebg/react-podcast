@@ -1,6 +1,7 @@
 import {
   SEARCH_START,
-  SEARCH_END
+  SEARCH_END,
+  SEARCH_CLEAR
 } from '../constants';
 
 const initState = {
@@ -15,6 +16,12 @@ export default (state = initState, action) => {
         results: [],
         is_loading: true,
       };
+
+    case SEARCH_CLEAR:
+      return {
+        results: [],
+        is_loading: false,
+      }
 
     case SEARCH_END:
       return {

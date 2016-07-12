@@ -17,7 +17,10 @@ export function configureStore(initialState = {}) {
         window.devToolsExtension() : f => f
   ));
 
-  persistStore(store);
+  persistStore(store, {
+    blacklist: ['search'],
+    debounce: 500,
+  });
 
   return store;
 }

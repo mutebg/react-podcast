@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { setShow, fetchShow } from '../../actions';
 import { browserHistory } from 'react-router';
 
-export default class PodcastList extends React.Component {
+class PodcastList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {}
@@ -15,17 +15,17 @@ export default class PodcastList extends React.Component {
     return (
       <div className="podcast-list">
         <NavBar
-          leftIcon="arrow_back"
-          leftIconClick={ () => browserHistory.goBack() }
           rightIcon="search"
-          rightconClick={ () => browserHistory.push('search') }
+          rightIconClick={ () => browserHistory.push('search') }
           >
-          <h1>My podcast list</h1>
+          <h1 className="page-title">My podcast list</h1>
         </NavBar>
-        <ThumbList items={this.props.podcasts} onClickHandler={ (item) => {
+        <div className="container">
+          <ThumbList items={this.props.podcasts} onClickHandler={ (item) => {
             this.props.fetchShow(item.id);
             this.props.setShow(item);
           }}/>
+        </div>
       </div>
     );
   }

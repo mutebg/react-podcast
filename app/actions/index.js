@@ -22,6 +22,12 @@ export const fetchSearch = term => {
   };
 };
 
+export const clearSearch = () => {
+  return {
+    type: c.SEARCH_CLEAR
+  }
+}
+
 export const fetchShow = showID => {
   return (dispatch) => {
     dispatch({
@@ -43,6 +49,7 @@ export const fetchShow = showID => {
   };
 }
 
+
 export const setShow = data => {
   return {
     type: c.SET_SHOW,
@@ -58,9 +65,24 @@ export const podcastAdd = podcast => {
   }
 }
 
-export const podcastRemove = podcastIndex => {
+export const podcastRemove = podcastID => {
   return {
-    type: c.PODCAST_EDIT,
-    payload: podcastIndex,
+    type: c.PODCAST_REMOVE,
+    payload: podcastID,
+  }
+}
+
+export const playerStart = (episode, show) => {
+  console.log('show', show);
+  let payload = {
+    ...episode,
+    show: show.title,
+    image: show.image,
+  };
+  console.log('payload', payload);
+
+  return {
+    type: c.PLAYER_START,
+    payload,
   }
 }

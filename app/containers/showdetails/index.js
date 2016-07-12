@@ -3,7 +3,7 @@ import React from 'react';
 import Header from '../../components/header';
 import Cover from '../../components/cover';
 import { connect } from 'react-redux';
-import { fetchShow } from '../../actions';
+import { fetchShow, playerStart } from '../../actions';
 
 
 class ShowDetails extends React.Component {
@@ -12,10 +12,13 @@ class ShowDetails extends React.Component {
   }
 
   componentWillMount() {
-    console.log('info', this.props.show.info );
     if ( this.props.show.info ) {
       //this.props.fetchShow(this.props.params.id);
     }
+  }
+
+  handlePlay(item) {
+    this.props.playerStart(item, this.props.show.info);
   }
 
   render() {
@@ -27,7 +30,7 @@ class ShowDetails extends React.Component {
           <div className="details-list__date">{date.getDate()}<br />{date.getMonth()}</div>
           <div className="details-list__title">{item.title}</div>
           <div className="details-list__action">
-            <button className="details-list__btn material-icons">play_circle_outline</button>
+            <button className="details-list__btn material-icons" onClick={this.handlePlay.bind(this, item)}>play_circle_outline</button>
             <div className="details-list__size">{item.size} MB</div>
           </div>
         </div>);
@@ -48,4 +51,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, {fetchShow})(ShowDetails);
+export default connect(mapStateToProps, {fetchShow, playerStart})(ShowDetails);

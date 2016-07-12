@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import {
   PODCAST_ADD,
   PODCAST_REMOVE
@@ -19,8 +20,8 @@ export default (state = initState, action) => {
       }];
 
     case PODCAST_REMOVE: {
-      const index = state.indexOf(action.payload);
-      if (index >= 0) {
+      const index = _.findIndex( state, (item) => item.id == action.payload );
+      if (index >= 0 ) {
         return [
           ...state.slice(0, index),
           ...state.slice(index + 1),

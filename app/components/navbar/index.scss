@@ -4,6 +4,11 @@ $size: 50px;
   height: $size;
   background: #009688;
   display: flex;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  left: 0;
+  z-index: 10;
 
   &__icon {
     width: $size;
@@ -11,7 +16,7 @@ $size: 50px;
     flex: 1;
     max-width: $size;
     min-width: $size;
-    font-size: 38px;
+    font-size: 28px;
     line-height: $size;
     text-align: center;
     color: #fff;

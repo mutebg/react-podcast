@@ -17,7 +17,7 @@ export default class Cover extends React.Component {
           leftIcon="arrow_back"
           leftIconClick={ () => browserHistory.goBack() }
           rightIcon="more_vert"
-          rightconClick={ () => console.log('right') }
+          rightIconClick={ () => console.log('right') }
           >
         </NavBar>
         <img className="cover__img" src={this.props.image} />

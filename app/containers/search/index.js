@@ -4,7 +4,7 @@ import NavBar from '../../components/navbar';
 import Loading from '../../components/loading';
 import SearchResultItem from '../../components/searchresultitem';
 import { connect } from 'react-redux';
-import { fetchSearch, podcastAdd, podcastRemove } from '../../actions';
+import { fetchSearch, clearSearch, podcastAdd, podcastRemove } from '../../actions';
 import { browserHistory } from 'react-router';
 
 
@@ -18,17 +18,25 @@ class Search extends React.Component {
     }
   }
 
+  componentWillMount() {
+    this.props.clearSearch();
+  }
+
+
   handleSearch() {
     this.props.fetchSearch(this.state.term);
   }
 
   render () {
+    var myPodcasts = this.props.podcasts.map( item => item.id );
+
+
 
     let loading = this.props.search.is_loading ? <Loading /> : null;
     let results =  this.props.search.results.map( item => {
       return <SearchResultItem
         key={item.channel_id}
-        isAdded={false}
+        isAdded={ myPodcasts.indexOf(item.channel_id) >= 0 }
         title={item.title}
         onClickAdd={ () => this.props.podcastAdd(item) }
         onClickRemove={ () => this.props.podcastRemove(item.channel_id) }
@@ -41,12 +49,15 @@ class Search extends React.Component {
           leftIcon="arrow_back"
           leftIconClick={ () => browserHistory.goBack() }
           rightIcon="search"
-          rightconClick={ this.handleSearch }
+          rightIconClick={ this.handleSearch }
           >
-          <input type="text" ref="search-input" className="search-input" value={this.state.term} onChange={ (e) => this.setState({term: e.target.value})}/>
+          <input type="text" ref="search-input" placeholder="Search..."
+            className="search-input" value={this.state.term} onChange={ (e) => this.setState({term: e.target.value})}/>
         </NavBar>
-        {loading}
-        {results}
+        <div className="container">
+          {loading}
+          {results}
+        </div>
       </div>
     );
   }
@@ -55,7 +66,8 @@ class Search extends React.Component {
 function mapStateToProps(state) {
   return {
     search: state.search,
+    podcasts: state.podcasts,
   };
 }
 
-export default connect(mapStateToProps, {fetchSearch, podcastAdd, podcastRemove})(Search);
+export default connect(mapStateToProps, {fetchSearch, clearSearch, podcastAdd, podcastRemove})(Search);

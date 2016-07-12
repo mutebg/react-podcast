@@ -1,4 +1,28 @@
 .search-result-item {
+  border-bottom: 1px solid #ccc;
   padding: 10px;
-  border-bottom: 1px solid #000;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+
+
+  &__title {
+    flex: auto;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding: 0 20px;
+    line-height: 1.1;
+  }
+
+  &__btn{
+    flex: 1;
+    max-width: 40px;
+    min-width: 40px;
+    font-size: 32px;
+    color: green;
+
+    &--active {
+      color: red;
+    }
+  }
 }
