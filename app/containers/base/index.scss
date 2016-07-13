@@ -16,10 +16,17 @@ body {
 .page-title {
   display: block;
   line-height: 50px;
+  height: 50px;
   font-size: 22px;
   color: #fff;
-  padding: 0 20px;
+  //padding: 0 20px;
   font-weight: 300;
+
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
 }
 
 .search-input {
@@ -35,6 +42,27 @@ body {
   bottom: 0;
   z-index: 10;
   width: 100%;
-  height: 50px;
-  background: orange;
+  box-shadow: 0 -3px 3px rgba(0, 95, 86, 0.8);
+}
+
+.base-container {
+  height: 100vh;
+  overflow: scroll;
+}
+
+.player + .base-container {
+  height: calc( 100vh - 60px );
+}
+
+.icon-rotate {
+  animation: 0.6s rotate infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

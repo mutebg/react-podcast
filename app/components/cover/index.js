@@ -19,6 +19,7 @@ export default class Cover extends React.Component {
           rightIcon="more_vert"
           rightIconClick={ () => console.log('right') }
           >
+          <h1 className="page-title">{this.props.title}</h1>
         </NavBar>
         <img className="cover__img" src={this.props.image} />
       </div>

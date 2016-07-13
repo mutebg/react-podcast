@@ -14,6 +14,7 @@ export const fetchSearch = term => {
           payload: response.channels,
         });
       }).catch(error => {
+        console.log('error', error);
         return dispatch({
           type: c.SEARCH_END,
           payload: [],
@@ -41,6 +42,7 @@ export const fetchShow = showID => {
           payload: response.channel,
         });
       }).catch(error => {
+        console.log('error', error);
         return dispatch({
           type: c.FETCH_SHOW_END,
           payload: [],
@@ -84,5 +86,11 @@ export const playerStart = (episode, show) => {
   return {
     type: c.PLAYER_START,
     payload,
+  }
+}
+
+export const playerStop = () => {
+  return {
+    type: c.PLAYER_STOP
   }
 }

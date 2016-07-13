@@ -3,7 +3,8 @@ import React from 'react';
 import Header from '../../components/header';
 import Cover from '../../components/cover';
 import { connect } from 'react-redux';
-import { fetchShow, playerStart } from '../../actions';
+import { fetchShow, playerStart, playerStop } from '../../actions';
+import formatMB from '../../utils/formatmb';
 
 
 class ShowDetails extends React.Component {
@@ -18,20 +19,26 @@ class ShowDetails extends React.Component {
   }
 
   handlePlay(item) {
-    this.props.playerStart(item, this.props.show.info);
+    if ( item.show_id === this.props.player.show_id  ) {
+      this.props.playerStop();
+    } else {
+      this.props.playerStart(item, this.props.show.info);
+    }
   }
 
   render() {
-
+    console.log('episodes',this.props.show.episodes);
     const list = this.props.show.episodes.map( (item) => {
       let date = new Date(item.date);
+      let icon = item.show_id === this.props.player.show_id ? 'pause_circle_outline' : 'play_circle_outline';
+      let formatedSize = formatMB(item.size);
       return (
         <div className="details-list__item" key={item.show_id}>
           <div className="details-list__date">{date.getDate()}<br />{date.getMonth()}</div>
           <div className="details-list__title">{item.title}</div>
           <div className="details-list__action">
-            <button className="details-list__btn material-icons" onClick={this.handlePlay.bind(this, item)}>play_circle_outline</button>
-            <div className="details-list__size">{item.size} MB</div>
+            <button className="details-list__btn material-icons" onClick={this.handlePlay.bind(this, item)}>{icon}</button>
+            <div className="details-list__size">{ formatedSize } MB</div>
           </div>
         </div>);
     });
@@ -48,7 +55,8 @@ class ShowDetails extends React.Component {
 function mapStateToProps(state) {
   return {
     show: state.show,
+    player: state.player,
   };
 }
 
-export default connect(mapStateToProps, {fetchShow, playerStart})(ShowDetails);
+export default connect(mapStateToProps, {fetchShow, playerStart, playerStop })(ShowDetails);

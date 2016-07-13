@@ -16,9 +16,9 @@ class Base extends React.Component {
       audioPlayer = (
         <div className="player">
           <Player source={media_link}
-          show={show}
-          episode={title}
-          image={image}
+            show={show}
+            episode={title}
+            image={image}
           />
         </div>
       )
@@ -26,8 +26,8 @@ class Base extends React.Component {
 
     return (
       <div className="base">
-        { this.props.children }
         {audioPlayer}
+        <div className="base-container">{ this.props.children }</div>
       </div>
     )
   }
