@@ -76,7 +76,8 @@
     "web-app-manifest-loader": "^0.1.1",
     "webpack": "^1.12.9",
     "webpack-dev-server": "^1.14.0",
-    "webpack-merge": "^0.7.0"
+    "webpack-merge": "^0.7.0",
+    "worker-loader": "^0.7.1"
   },
   "dependencies": {
     "axios": "^0.9.1",

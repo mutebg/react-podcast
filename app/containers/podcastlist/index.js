@@ -15,6 +15,7 @@ class PodcastList extends React.Component {
     return (
       <div className="podcast-list">
         <NavBar
+          leftIcon="menu"
           rightIcon="search"
           rightIconClick={ () => browserHistory.push('search') }
           >

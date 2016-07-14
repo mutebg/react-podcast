@@ -1,7 +1,0 @@
-- search - https://gpodder.net/search.json?q=javascript
-- podcast details - https://gpodder.net/api/2/data/podcast.json?url=http://feeds.feedburner.com/coverville
-- episodes - http://feeds.gpodder.net/parse?url=https://feeds.feedwrench.com/JavaScriptJabber.rss&inline_logo=1&scale_logo=30
-
-
-
-- search http://api.digitalpodcast.com/v2r/search/?appid=d203fff2c3606d2112714b9334d9a0b5&keywords=javascript&format=json
