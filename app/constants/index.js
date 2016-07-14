@@ -10,6 +10,7 @@ export const SET_SHOW = 'SET_SHOW';
 
 export const PODCAST_ADD = 'PODCAST_ADD';
 export const PODCAST_REMOVE = 'PODCAST_REMOVE';
+export const PODCAST_UPDATE = 'PODCAST_UPDATE';
 
 export const PLAYER_START = 'PLAYER_START';
 export const PLAYER_STOP = 'PLAYER_STOP';

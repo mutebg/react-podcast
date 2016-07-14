@@ -1,0 +1,12 @@
+Ideas -
+ - image color palette in webworker
+ - rxjs for search/results
+ - immutable-js for reducers
+
+
+
+
+ - service worker
+    - sw-precahe/sw-tookit
+ - web manifest
+    - icons

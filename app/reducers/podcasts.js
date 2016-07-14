@@ -1,7 +1,8 @@
 import _ from 'lodash';
 import {
   PODCAST_ADD,
-  PODCAST_REMOVE
+  PODCAST_REMOVE,
+  PODCAST_UPDATE
 } from '../constants';
 
 const initState = [];
@@ -18,6 +19,18 @@ export default (state = initState, action) => {
         image: action.payload.image,
         color: '#009688',
       }];
+
+    case PODCAST_UPDATE: {
+      const index = _.findIndex( state, (item) => item.id == action.payload.podcastID );
+      if (index >= 0 ) {
+        return [
+          ...state.slice(0, index),
+          {...state[index], ...action.payload.data},
+          ...state.slice(index + 1),
+        ];
+      }
+      return state;
+    }
 
     case PODCAST_REMOVE: {
       const index = _.findIndex( state, (item) => item.id == action.payload );

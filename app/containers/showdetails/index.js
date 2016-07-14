@@ -27,7 +27,6 @@ class ShowDetails extends React.Component {
   }
 
   render() {
-    console.log('episodes',this.props.show.episodes);
     const list = this.props.show.episodes.map( (item) => {
       let date = new Date(item.date);
       let icon = item.show_id === this.props.player.show_id ? 'pause_circle_outline' : 'play_circle_outline';
@@ -42,6 +41,8 @@ class ShowDetails extends React.Component {
           </div>
         </div>);
     });
+
+    console.log('props', this.props.show);
 
     return (
       <div className="details">

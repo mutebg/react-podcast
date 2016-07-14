@@ -1,5 +1,10 @@
 import * as c from '../constants';
 import { get, post } from '../utils/api';
+import store from '../store';
+
+let WorkerThread = require("worker!../webworker.js");
+let webWorker = new WorkerThread();
+
 
 export const fetchSearch = term => {
   return (dispatch) => {
@@ -60,7 +65,12 @@ export const setShow = data => {
 }
 
 export const podcastAdd = podcast => {
-  console.log('podcast add', podcast);
+  webWorker.postMessage({
+    type: c.PODCAST_ADD,
+    payload: podcast
+  });
+
+
   return {
     type: c.PODCAST_ADD,
     payload: podcast,
@@ -74,6 +84,16 @@ export const podcastRemove = podcastID => {
   }
 }
 
+export const podcastUpdate = (podcastID, data ) => {
+  return {
+    type: c.PODCAST_UPDATE,
+    payload: {
+      podcastID,
+      data,
+    }
+  }
+}
+
 export const playerStart = (episode, show) => {
   console.log('show', show);
   let payload = {
@@ -81,7 +101,6 @@ export const playerStart = (episode, show) => {
     show: show.title,
     image: show.image,
   };
-  console.log('payload', payload);
 
   return {
     type: c.PLAYER_START,
@@ -94,3 +113,14 @@ export const playerStop = () => {
     type: c.PLAYER_STOP
   }
 }
+
+webWorker.addEventListener('message', (e) => {
+  console.log(e);
+  let {type, payload} = e.data;
+  switch( type ) {
+    case c.PODCAST_ADD:
+      store.dispatch( podcastUpdate(payload.showID, {color: payload.color}) );
+    break;
+  }
+
+});

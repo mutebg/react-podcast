@@ -24,3 +24,5 @@ export function configureStore(initialState = {}) {
 
   return store;
 }
+
+export default configureStore({});
