@@ -42,8 +42,6 @@ class ShowDetails extends React.Component {
         </div>);
     });
 
-    console.log('props', this.props.show);
-
     return (
       <div className="details">
         <Cover {...this.props.show.info}/>

@@ -1,0 +1,28 @@
+.alert {
+  margin: 30px;
+  text-align: center;
+  color: #999;
+
+  animation-name: fade-in;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+  animation-duration: 0.5s;
+
+  &__icon {
+    font-size: 72px;
+    margin-bottom: 10px;
+  }
+
+  &__message {
+    font-size: 1.2rem;
+  }
+
+  &--error {
+    color: red;
+  }
+
+  &--success {
+    color: green;
+  }
+}

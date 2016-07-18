@@ -4,7 +4,7 @@
   animation-fill-mode: forwards;
   animation-iteration-count: 1;
   animation-duration: 0.5s;
-
+  
   &__item {
     border-bottom: 1px solid #ccc;
     padding: 10px 20px;
@@ -45,14 +45,5 @@
 
   &__size {
     font-size: 11px;
-  }
-}
-
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
   }
 }

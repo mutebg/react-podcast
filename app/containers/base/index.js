@@ -3,30 +3,26 @@ import './index.scss';
 import React from 'react';
 import Player from '../../components/player';
 import { connect } from 'react-redux';
+import cn from 'classnames';
 
 
 class Base extends React.Component {
 
   render() {
+    let { media_link, title, image, show } = this.props.player;
+    let playerClass = cn('player',
+      {'player--show': this.props.player.title}
+    );
 
-    let audioPlayer = null;
-
-    if ( this.props.player.title) {
-      let { media_link, title, image, show } = this.props.player;
-      audioPlayer = (
-        <div className="player">
+    return (
+      <div className="base">
+        <div className={playerClass}>
           <Player source={media_link}
             show={show}
             episode={title}
             image={image}
           />
         </div>
-      )
-    }
-
-    return (
-      <div className="base">
-        {audioPlayer}
         <div className="base-container">{ this.props.children }</div>
       </div>
     )

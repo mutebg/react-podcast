@@ -6,6 +6,7 @@ import SearchResultItem from '../../components/searchresultitem';
 import { connect } from 'react-redux';
 import { fetchSearch, clearSearch, podcastAdd, podcastRemove } from '../../actions';
 import { browserHistory } from 'react-router';
+import Alert from '../../components/alert';
 
 
 class Search extends React.Component {
@@ -15,6 +16,7 @@ class Search extends React.Component {
     this.handleSearch = this.handleSearch.bind(this);
     this.state = {
       term: '',
+      hits: 0,
     }
   }
 
@@ -24,6 +26,9 @@ class Search extends React.Component {
 
 
   handleSearch() {
+    this.setState({
+      hits: 1,
+    })
     this.props.fetchSearch(this.state.term);
   }
 
@@ -43,6 +48,14 @@ class Search extends React.Component {
         />
     })
 
+    let message = null;
+
+    if ( this.state.hits === 0 && !this.props.search.is_loading ) {
+      message = <Alert message="Search for podcasts" icon="search" />;
+    } else if ( this.state.hits > 0 && this.props.search.results.length === 0 && !this.props.search.is_loading ) {
+      message = <Alert message="No podcasts found" icon="block" />;
+    }
+
     return (
       <div className="search">
         <NavBar
@@ -57,6 +70,7 @@ class Search extends React.Component {
         <div className="container">
           {loading}
           {results}
+          {message}
         </div>
       </div>
     );

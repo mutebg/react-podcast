@@ -27,6 +27,14 @@ export default class List extends React.Component {
   componentDidMount() {
     this.fakeHeader = ReactDOM.findDOMNode( this.refs['fake-header'] );
     this.windowWidth = window.innerWidth;
+
+    //removing animate class after component mount
+    let thumbList = ReactDOM.findDOMNode( this.refs['thumb-list'] );
+    let animationEnd$ = Rx.Observable.fromEvent(thumbList, 'animationend');
+    let subscription = animationEnd$.subscribe(
+      (events) => thumbList.classList.remove('thumb-list--animate')
+    );
+
   }
 
   openItem(item) {
@@ -43,6 +51,7 @@ export default class List extends React.Component {
 
     img.style.transform = `translate3d(${left}px, ${top}px, 0) scale(${scale})`,
     img.style.willChange = 'transform';
+    img.style.zIndex = 3;
     this.setState({
       openItem: item.id,
     });
@@ -52,7 +61,7 @@ export default class List extends React.Component {
     let headerSource$ = Rx.Observable.fromEvent(this.fakeHeader, 'transitionend');
 
     let combineSource$ = Rx.Observable.merge(imgSource$, headerSource$)
-      .take(2) // 3 is number of transitions: img:transform, header:transform, header:opacity
+      .take(2) // 2 is number of transitions: img:transform, header:transform
       .delay(50); // small delay to visualy finish transitions
     let subscription = combineSource$.subscribe(
       (events) => console.log('event', events), // next
@@ -84,7 +93,7 @@ export default class List extends React.Component {
           <div className="fake-header__bubble"></div>
         </div>
         <div className={fakeContClasses} ref="fake-container"></div>
-        {list}
+        <div className="thumb-list thumb-list--animate" ref="thumb-list">{list}</div>
       </div>
     )
   }
