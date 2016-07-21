@@ -1,27 +1,35 @@
 <!DOCTYPE html>
-<!--[if lt IE 7 ]> <html lang="en" class="ie6" {% if(o.htmlWebpackPlugin.files.manifest) { %} manifest="{%= o.htmlWebpackPlugin.files.manifest %}"{% } %}> <![endif]-->
-<!--[if IE 7 ]>    <html lang="en" class="ie7" {% if(o.htmlWebpackPlugin.files.manifest) { %} manifest="{%= o.htmlWebpackPlugin.files.manifest %}"{% } %}> <![endif]-->
-<!--[if IE 8 ]>    <html lang="en" class="ie8" {% if(o.htmlWebpackPlugin.files.manifest) { %} manifest="{%= o.htmlWebpackPlugin.files.manifest %}"{% } %}> <![endif]-->
-<!--[if IE 9 ]>    <html lang="en" class="ie9" {% if(o.htmlWebpackPlugin.files.manifest) { %} manifest="{%= o.htmlWebpackPlugin.files.manifest %}"{% } %}> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="" {% if(o.htmlWebpackPlugin.files.manifest) { %} manifest="{%= o.htmlWebpackPlugin.files.manifest %}"{% } %}> <!--<![endif]-->
+<html lang="en" class="" {% if(o.htmlWebpackPlugin.files.manifest) { %} manifest="{%= o.htmlWebpackPlugin.files.manifest %}"{% } %}> <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   <title>{%=o.htmlWebpackPlugin.options.title || 'Webpack App'%}</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 
   {% if (o.htmlWebpackPlugin.files.favicon) { %}
   <link rel="shortcut icon" href="{%=o.htmlWebpackPlugin.files.favicon%}">
   {% } %}
   {% if (o.htmlWebpackPlugin.options.mobile) { %}
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+  {% } %}
+
+  {% if (o.htmlWebpackPlugin.options.themeColor) { %}
+  <!-- Chrome, Firefox OS, Opera and Vivaldi -->
+  <meta name="theme-color" content="{%=o.htmlWebpackPlugin.options.themeColor%}">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="{%=o.htmlWebpackPlugin.options.themeColor%}">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-status-bar-style" content="{%=o.htmlWebpackPlugin.options.themeColor%}">
   {% } %}
 
   {% for (var css in o.htmlWebpackPlugin.files.css) { %}
   <link href="{%=o.htmlWebpackPlugin.files.css[css] %}" rel="stylesheet">
   {% } %}
 
-  <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
+  <link rel="manifest" href="/manifest.json">
+  <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'> -->
+  <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 </head>
 <body>
 {% if (o.htmlWebpackPlugin.options.unsupportedBrowser) { %}
@@ -75,6 +83,14 @@
   {% if (o.htmlWebpackPlugin.options.googleAnalytics.pageViewOnLoad) { %}
     ga('send', 'pageview');
     {% } %}
+</script>
+{% } %}
+
+{% if (o.htmlWebpackPlugin.options.sentry) { %}
+
+<script src="https://cdn.ravenjs.com/2.2.1/raven.min.js"></script>
+<script>
+  Raven.config('{%=o.htmlWebpackPlugin.options.sentry%}').install();
 </script>
 {% } %}
 

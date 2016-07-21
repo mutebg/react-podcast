@@ -53,8 +53,8 @@ const common = {
                 include: PATHS.app
             },{
                 test: /\.(png|jpg|svg)$/,
-                loader: "url-loader?limit=100000"
-                //loader: "file-loader"
+                //loader: "url-loader?limit=100000"
+                loader: "file-loader"
             },{
               test: /manifest.json$/,
               loader: 'file-loader?name=manifest.json!web-app-manifest-loader'
