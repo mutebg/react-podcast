@@ -64,7 +64,7 @@ const common = {
     plugins: [
         new HtmlwebpackPlugin({
             title: config.PAGE_TITLE,
-            template: 'app/assets/index.html',
+            template: "app/assets/index.html",
             appMountId: 'app',
             hash: false,
             mobile: true,
