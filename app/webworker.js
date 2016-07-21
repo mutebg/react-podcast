@@ -1,5 +1,3 @@
-import faker from 'faker';
-
 self.addEventListener('message', function(e) {
 
   let { type , payload } = e.data;
@@ -9,7 +7,7 @@ self.addEventListener('message', function(e) {
       self.postMessage({
         type,
         payload: {
-          color: faker.internet.color(),
+          color: '#009688',
           showID: payload.channel_id,
         }
       });

@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ThumbItem from '../thumbitem';
-import faker from 'faker';
 import _ from 'lodash';
 import './index.scss';
 import cn from 'classnames';
 import {browserHistory} from 'react-router';
 import Rx from 'rxjs/Rx';
+import Alert from '../alert';
 
 
 export default class List extends React.Component {
@@ -22,11 +22,13 @@ export default class List extends React.Component {
     this.openItem = this.openItem.bind(this);
     this.fakeHeader = null;
     this.windowWidth = 320;
+    this.thumbHeight = 107;
   }
 
   componentDidMount() {
     this.fakeHeader = ReactDOM.findDOMNode( this.refs['fake-header'] );
     this.windowWidth = window.innerWidth;
+    this.thumbHeight = Math.ceil(this.windowWidth / 3);
 
     //removing animate class after component mount
     let thumbList = ReactDOM.findDOMNode( this.refs['thumb-list'] );
@@ -76,8 +78,15 @@ export default class List extends React.Component {
   }
 
   render() {
+
     const list = this.props.items.map(item => {
-      return <ThumbItem ref={`item-${item.id}`}  key={item.id} {...item} onClick={ () => this.openItem(item) }/>;
+      return <ThumbItem
+        ref={`item-${item.id}`}
+        key={item.id}
+        onClick={ () => this.openItem(item) }
+        style={{background: item.color}}
+        {...item}
+        />;
     });
 
     let fakeHeaderClasses = cn('fake-header', {

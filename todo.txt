@@ -1,12 +1,7 @@
 Ideas -
- - image color palette in webworker
+ - image color palette in webworker ( do fetch call to api that returns color in background )
  - rxjs for search/results
  - immutable-js for reducers
  - redux selects
  - rxjs for audio player
-
-
- - service worker
-    - sw-precahe/sw-tookit
- - web manifest
-    - icons
+ - mobx ( replace redux with it)

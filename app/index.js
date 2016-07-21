@@ -17,3 +17,5 @@ const routes = (
 window.onload = () => {
   ReactDOM.render(routes, document.getElementById('app'));
 };
+
+require('./manifest.json');

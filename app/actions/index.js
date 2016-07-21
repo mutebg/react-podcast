@@ -95,7 +95,6 @@ export const podcastUpdate = (podcastID, data ) => {
 }
 
 export const playerStart = (episode, show) => {
-  console.log('show', show);
   let payload = {
     ...episode,
     show: show.title,

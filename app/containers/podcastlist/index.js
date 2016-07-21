@@ -4,6 +4,8 @@ import NavBar from '../../components/navbar';
 import { connect } from 'react-redux';
 import { setShow, fetchShow } from '../../actions';
 import { browserHistory } from 'react-router';
+import Alert from '../../components/alert';
+
 
 class PodcastList extends React.Component {
   constructor(props) {
@@ -12,6 +14,18 @@ class PodcastList extends React.Component {
   }
 
   render() {
+
+    let alert = null;
+    let thumblist = null;
+    if ( this.props.podcasts.length == 0 ) {
+      alert = <Alert message="Go to search to add podcast" icon="music_video" />;
+    } else {
+      thumblist = <ThumbList items={this.props.podcasts} onClickHandler={ (item) => {
+        this.props.fetchShow(item.id);
+        this.props.setShow(item);
+      }}/>
+    }
+
     return (
       <div className="podcast-list">
         <NavBar
@@ -22,10 +36,8 @@ class PodcastList extends React.Component {
           <h1 className="page-title">My podcast list</h1>
         </NavBar>
         <div className="container">
-          <ThumbList items={this.props.podcasts} onClickHandler={ (item) => {
-            this.props.fetchShow(item.id);
-            this.props.setShow(item);
-          }}/>
+          {alert}
+          {thumblist}
         </div>
       </div>
     );

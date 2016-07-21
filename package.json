@@ -1,5 +1,5 @@
 {
-  "name": "WebPodcastPlayer",
+  "name": "WebPodcasts",
   "version": "1.0.0",
   "description": "",
   "main": "webpack.config.js",
@@ -80,24 +80,17 @@
     "worker-loader": "^0.7.1"
   },
   "dependencies": {
-    "axios": "^0.9.1",
-    "classnames": "^2.2.3",
-    "es6-promise": "^3.1.2",
-    "img-palette": "^0.3.2",
-    "isomorphic-fetch": "^2.2.1",
-    "react": "^0.14.5",
-    "react-addons-css-transition-group": "^0.14.7",
-    "react-addons-pure-render-mixin": "^15.0.0",
-    "react-dom": "^0.14.5",
-    "react-ink": "^5.0.2",
-    "react-prefixer": "^1.1.4",
-    "react-redux": "^4.4.0",
-    "react-router": "^2.0.0-rc4",
-    "react-swipeable": "^3.1.0",
-    "redux": "^3.3.1",
-    "redux-persist": "^2.0.1",
-    "redux-promise": "^0.5.1",
-    "redux-thunk": "^2.0.1",
+    "axios": "^0.13.1",
+    "classnames": "^2.2.5",
+    "es6-promise": "^3.2.1",
+    "react": "^15.2.1",
+    "react-dom": "^15.2.1",
+    "react-redux": "^4.4.5",
+    "react-router": "^2.6.0",
+    "redux": "^3.5.2",
+    "redux-persist": "^3.2.2",
+    "redux-thunk": "^2.1.0",
+    "rxjs": "^5.0.0-beta.10",
     "sw-toolbox": "^3.1.1"
   }
 }
