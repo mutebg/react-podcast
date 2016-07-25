@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" class="" <% if(htmlWebpackPlugin.files.manifest) { %> manifest="<%= htmlWebpackPlugin.files.manifest %>"<% } %>> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title><%=htmlWebpackPlugin.options.title || 'Webpack App'%></title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+  <% if (htmlWebpackPlugin.files.favicon) { %>
+  <link rel="shortcut icon" href="<%=htmlWebpackPlugin.files.favicon%>">
+  <% } %>
+  <% if (htmlWebpackPlugin.options.mobile) { %>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+  <% } %>
+
+  <% if (htmlWebpackPlugin.options.themeColor) { %>
+  <!-- Chrome, Firefox OS, Opera and Vivaldi -->
+  <meta name="theme-color" content="<%=htmlWebpackPlugin.options.themeColor%>">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="<%=htmlWebpackPlugin.options.themeColor%>">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-status-bar-style" content="<%=htmlWebpackPlugin.options.themeColor%>">
+  <% } %>
+
+  <% for (var css in htmlWebpackPlugin.files.css) { %>
+  <link href="<%=htmlWebpackPlugin.files.css[css] %>" rel="stylesheet">
+  <% } %>
+
+  <link rel="manifest" href="/manifest.json">
+  <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'> -->
+  <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+</head>
+<body>
+<% if (htmlWebpackPlugin.options.unsupportedBrowser) { %>
+<style>.unsupported-browser { display: none; }</style>
+<div class="unsupported-browser">
+  Sorry, your browser is not supported.  Please upgrade to
+  the latest version or switch your browser to use this site.
+  See <a href="http://outdatedbrowser.com/">outdatedbrowser.com</a>
+  for options.
+</div>
+<% } %>
+
+<% if (htmlWebpackPlugin.options.appMountId) { %>
+<div id="<%=htmlWebpackPlugin.options.appMountId%>"></div>
+<% } %>
+
+<% if (htmlWebpackPlugin.options.appMountIds && htmlWebpackPlugin.options.appMountIds.length > 0) { %>
+<% for (var index in htmlWebpackPlugin.options.appMountIds) { %>
+<div id="<%=htmlWebpackPlugin.options.appMountIds[index]%>"></div>
+<% } %>
+<% } %>
+
+<% if (htmlWebpackPlugin.options.window) { %>
+<script>
+  <% for (var varName in htmlWebpackPlugin.options.window) { %>
+    window['<%=varName%>'] = <%#JSON.stringify(htmlWebpackPlugin.options.window[varName])%>;
+  <% } %>
+</script>
+<% } %>
+
+<% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
+<script src="<%=htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
+<% } %>
+
+<% if (htmlWebpackPlugin.options.devServer) { %>
+<script src="<%=htmlWebpackPlugin.options.devServer%>/webpack-dev-server.js"></script>
+<% } %>
+
+<% if (htmlWebpackPlugin.options.googleAnalytics) { %>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+
+  <% if (htmlWebpackPlugin.options.googleAnalytics.trackingId) { %>
+    ga('create', '<%=htmlWebpackPlugin.options.googleAnalytics.trackingId%>', 'auto');
+    <% } else { throw new Error("html-webpack-template requires googleAnalytics.trackingId config"); }%>
+
+  <% if (htmlWebpackPlugin.options.googleAnalytics.pageViewOnLoad) { %>
+    ga('send', 'pageview');
+    <% } %>
+</script>
+<% } %>
+
+<% if (htmlWebpackPlugin.options.sentry) { %>
+
+<script src="https://cdn.ravenjs.com/2.2.1/raven.min.js"></script>
+<script>
+  Raven.config('<%=htmlWebpackPlugin.options.sentry%>').install();
+</script>
+<% } %>
+
+<% if (htmlWebpackPlugin.options.sw) { %>
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').then(function(registration) {
+      console.log('SW registerd')
+    }).catch(function(error) {
+      console.log('SW fail to register', error);
+    });
+  }
+</script>
+<% } %>
+</body>
+</html>
