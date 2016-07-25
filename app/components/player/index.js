@@ -23,6 +23,8 @@ export default class Player extends React.Component {
   componentWillReceiveProps(nextProps) {
     if ( nextProps.source ) {
       this.delayedPlay();
+    } else {
+      this.stop();
     }
   }
 
