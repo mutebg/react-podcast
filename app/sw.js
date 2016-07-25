@@ -7,19 +7,30 @@
 
   //global.toolbox.options.cache.name = 'sw-cache-<%= hash %>';
 
-  global.toolbox.precache(['/', '/search', <%= precache %>]);//its variable populated by node script
+  //global.toolbox.precache(['/', '/search', <%= precache %>]);//its variable populated by node script
 
 
   // Turn on debug logging, visible in the Developer Tools' console.
-  global.toolbox.options.debug = true;
+  //global.toolbox.options.debug = true;
 
   // By default, all requests that don't match our custom handler will use the
   // toolbox.networkFirst cache strategy, and their responses will be stored in
   // the default cache.
-  global.toolbox.router.default = global.toolbox.networkFirst;
+  //global.toolbox.router.default = global.toolbox.networkFirst;
 
-  global.toolbox.router.get(/\.podcastcms\.de\//, global.toolbox.networkOnly);
+  //global.toolbox.router.get(/\.podcastcms\.de\//, global.toolbox.networkOnly);
   //global.toolbox.router.get('', global.toolbox.networkOnly);
+
+  // global.toolbox.router.get(/\.ytimg\.com\//, global.toolbox.cacheFirst, {
+  //   // Use a dedicated cache for the responses, separate from the default cache.
+  //   cache: {
+  //     name: 'youtube-thumbnails',
+  //     // Store up to 10 entries in that cache.
+  //     maxEntries: 10,
+  //     // Expire any entries that are older than 30 seconds.
+  //     maxAgeSeconds: 30
+  //   }
+  // });
 
 
   // Boilerplate to ensure our service worker takes control of the page as soon
